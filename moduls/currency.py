@@ -9,7 +9,7 @@ class Symbols:
 	
 	symbols = load()
 
-class ECB(Symbols):
+class Exchange(Symbols):
 	def __init__(self):
 		self.__url = 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
 
@@ -24,7 +24,7 @@ class ECB(Symbols):
 		except:
 			return {}, status
 
-	def exchange(self, amount, input_currency, output_currency=None, dec=2):
+	def ECB(self, amount, input_currency, output_currency=None, dec=2):
 		rates, status = self.__getRates()
 		inputC = Symbols.symbols[input_currency] if input_currency in Symbols.symbols else input_currency
 		#test if input_currency is in rates

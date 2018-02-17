@@ -1,20 +1,13 @@
-try:
-	from .moduls.currency import ECB
-except:
-	from moduls.currency import ECB
 import fire
-from django.http import JsonResponse
+from moduls.currency import Exchange
+from moduls.api import flaskAPI
 
-def django(request):
-	if request.method == 'GET':
-		argv = {}
-		argv['amount'] = float(request.GET['amount'])
-		argv['input_currency'] = request.GET['input_currency']
-		if 'output_currency' in request.GET: argv['output_currency'] = request.GET['output_currency']
-		if 'dec' in request.GET: argv['dec'] = int(request.GET['dec'])
-		return JsonResponse(ECB().exchange(**argv))
+def manager(flask=None, **kwargs):
+	if flask == None:
+		return Exchange().ECB(**kwargs)
 	else:
-		return JsonResponse({'ERROR': 'wrong method'})
+		flaskAPI.app.run(**kwargs)
 
 if __name__ == '__main__':
-	fire.Fire(component=ECB().exchange)
+	fire.Fire(component=manager)
+	
