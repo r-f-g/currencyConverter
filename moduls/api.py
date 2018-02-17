@@ -24,4 +24,4 @@ class djangoAPI:
 		argv['input_currency'] = request.GET['input_currency']
 		if 'output_currency' in request.GET: argv['output_currency'] = request.GET['output_currency']
 		if 'dec' in request.GET: argv['dec'] = int(request.GET['dec'])
-		return JsonResponse(djangoAPI.ECB(**argv))
+		return JsonResponse(djangoAPI.EX.ECB(**argv))
